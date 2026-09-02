@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.14/dist/lenis.css" />
+  <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -55,7 +57,7 @@
     .eyebrow { font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.28em; font-size:11px; color:var(--muted); }
     .rule { border-color:var(--border); }
     ::selection { background:#ff4f9e; color:#fff; }
-    html { scroll-padding-top:96px; }
+    html { scroll-padding-top:96px; overflow-x:hidden; }
 
     .btn-pink  { background:#ff4f9e; color:#fff; transition:background .2s,transform .2s; }
     .btn-pink:hover { background:#ff2f8b; transform:translateY(-1px); }
@@ -100,7 +102,7 @@
   </style>
 </head>
 
-<body class="font-sans antialiased overflow-x-hidden">
+<body class="font-sans antialiased">
 
   <!-- NAV -->
   <header class="fixed top-0 inset-x-0 z-50 border-b rule" style="background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(8px);">
@@ -487,23 +489,20 @@
     menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     document.querySelectorAll('.mob').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
 
-    // eased smooth scroll (ease-in-out) for in-page anchors
-    document.documentElement.style.scrollBehavior = 'auto';
-    const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-    let scrollRAF;
-    function smoothScrollTo(targetY, duration = 800) {
-      cancelAnimationFrame(scrollRAF);
-      const startY = window.scrollY;
-      const dist = targetY - startY;
-      if (Math.abs(dist) < 2) return;
-      let startT;
-      const step = ts => {
-        if (startT === undefined) startT = ts;
-        const p = Math.min((ts - startT) / duration, 1);
-        window.scrollTo(0, startY + dist * easeInOutCubic(p));
-        if (p < 1) scrollRAF = requestAnimationFrame(step);
-      };
-      scrollRAF = requestAnimationFrame(step);
+    // Lenis — page-wide momentum smooth scroll (wheel/trackpad) + eased anchors
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lenis = null;
+    if (window.Lenis && !prefersReduced) {
+      lenis = new Lenis({
+        duration: 1.15,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // easeOutExpo
+        smoothWheel: true,
+        touchMultiplier: 1.6,
+      });
+      const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    } else {
+      document.documentElement.style.scrollBehavior = 'smooth';
     }
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
@@ -513,8 +512,11 @@
         if (!el) return;
         e.preventDefault();
         mobileMenu.classList.add('hidden');
-        const y = el.getBoundingClientRect().top + window.scrollY - 80;  // fixed navbar offset
-        smoothScrollTo(y, 850);
+        if (lenis) {
+          lenis.scrollTo(el, { offset: -80, duration: 1.15 });
+        } else {
+          window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+        }
         history.replaceState(null, '', id);
       });
     });
