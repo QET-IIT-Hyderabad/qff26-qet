@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qiskit Fall Fest 2026 x |QET⟩ · IIT Hyderabad</title>
+  <meta name="description" content="Qiskit Fall Fest 2026 x |QET⟩ IIT Hyderabad — a student-led quantum computing festival & beginner-friendly hackathon. Workshops, industry talks, networking and Qiskit deep dives." />
+  <link rel="icon" href="materials-resources/00_Deliverables/Illustration%20Exports/badge-pink.svg" />
+
+  <!-- set theme before paint (default dark) -->
+  <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || 'dark';</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            bg:     'var(--bg)',
+            panel:  'var(--panel)',
+            ink:    'var(--ink)',
+            muted:  'var(--muted)',
+            accent: '#ff4f9e',
+            accent2:'#ff7eb6',
+            grape:  '#a78bfa',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root, [data-theme="dark"] {
+      --bg:#0a0916; --panel:#121022; --ink:#ece9f7; --muted:#8b86a6;
+      --border:rgba(255,255,255,0.12); --border2:rgba(255,255,255,0.28);
+      --birds:0.20;
+    }
+    [data-theme="light"] {
+      --bg:#e9ecfb; --panel:#f3f5fe; --ink:#1e1148; --muted:#6a6591;
+      --border:rgba(30,17,72,0.14); --border2:rgba(30,17,72,0.28);
+      --birds:0.6;
+    }
+    body { background:var(--bg); color:var(--ink); transition:background .35s,color .35s; }
+    .serif-italic { font-family:'Fraunces',serif; font-style:italic; font-optical-sizing:auto; }
+    h1,h2,h3 { font-family:'Fraunces',serif; font-optical-sizing:auto; }
+    .eyebrow { font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.28em; font-size:11px; color:var(--muted); }
+    .rule { border-color:var(--border); }
+    ::selection { background:#ff4f9e; color:#fff; }
+    html { scroll-padding-top:96px; }
+
+    .btn-pink  { background:#ff4f9e; color:#fff; transition:background .2s,transform .2s; }
+    .btn-pink:hover { background:#ff2f8b; transform:translateY(-1px); }
+    .btn-solid { background:var(--ink); color:var(--bg); transition:opacity .2s,transform .2s; }
+    .btn-solid:hover { opacity:.88; transform:translateY(-1px); }
+    .btn-ghost { border:1px solid var(--border2); color:var(--ink); transition:border-color .2s,color .2s; }
+    .btn-ghost:hover { border-color:#ff4f9e; color:#ff4f9e; }
+    .link-arrow:hover, .navlink:hover { color:#ff4f9e; }
+
+    .float { animation:float 7s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+    .secno { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; }
+    .tab-panel { animation:fade .35s ease; }
+    @keyframes fade { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+    .rowline:hover { background:color-mix(in srgb, var(--ink) 4%, transparent); }
+    .rowline:hover .rw-title { color:#ff4f9e; }
+    .birds { opacity:var(--birds); }
+    .birds-mask { -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 45%); mask-image:linear-gradient(90deg, transparent 0%, #000 45%); }
+
+    /* theme-swapped logos */
+    [data-theme="dark"] .only-light { display:none !important; }
+    [data-theme="light"] .only-dark { display:none !important; }
+    /* toggle icons */
+    [data-theme="dark"] .icon-moon { display:none; }
+    [data-theme="light"] .icon-sun { display:none; }
+
+    .portrait { filter:grayscale(0.15) contrast(1.02); }
+    .group:hover .portrait { filter:none; }
+
+    /* decade timeline */
+    .tl-dot { position:absolute; width:12px; height:12px; border-radius:9999px; background:#ff4f9e;
+              box-shadow:0 0 0 4px color-mix(in srgb,#ff4f9e 16%, transparent); transition:transform .25s; }
+    .tl-node:hover .tl-dot { transform:scale(1.35); }
+    .tl-node:hover .tl-cap { color:var(--ink); }
+    .tl-cap { transition:color .25s; }
+    .tl-dot.now { width:16px; height:16px; animation:tlpulse 2.6s ease-in-out infinite; }
+    @keyframes tlpulse {
+      0%,100% { box-shadow:0 0 0 5px color-mix(in srgb,#ff4f9e 24%, transparent); }
+      50%     { box-shadow:0 0 0 12px color-mix(in srgb,#ff4f9e 0%, transparent); }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden">
+
+  <!-- NAV -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b rule" style="background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(8px);">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3">
+        <img src="QET_Dark.png" alt="|QET&#10217; IIT Hyderabad" class="only-dark h-10" />
+        <img src="QET_Light.png" alt="|QET&#10217; IIT Hyderabad" class="only-light h-10" />
+        <span class="hidden sm:block h-8 w-px" style="background:var(--border2)"></span>
+        <span class="hidden sm:block eyebrow leading-relaxed">&times; Qiskit<br />Fall Fest 26</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-[13px] font-mono uppercase tracking-widest text-muted">
+        <a href="#about" class="navlink">About</a>
+        <a href="#schedule" class="navlink">Program</a>
+        <a href="#speakers" class="navlink">Speakers</a>
+        <a href="#hackathon" class="navlink">Hackathon</a>
+        <a href="#decade" class="navlink">Decade</a>
+        <a href="#team" class="navlink">Team</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="themeBtn" class="p-2 text-ink hover:text-accent transition-colors" aria-label="Toggle day / night">
+          <svg class="icon-sun h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
+          <svg class="icon-moon h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="#register" class="btn-pink hidden sm:inline-flex px-5 py-2.5 text-xs font-mono uppercase tracking-widest">Register</a>
+        <button id="menuBtn" class="md:hidden text-ink" aria-label="Menu">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden border-t rule bg-bg">
+      <div class="px-6 py-5 flex flex-col gap-4 font-mono uppercase tracking-widest text-sm text-muted">
+        <a href="#about" class="mob navlink">About</a>
+        <a href="#schedule" class="mob navlink">Program</a>
+        <a href="#speakers" class="mob navlink">Speakers</a>
+        <a href="#hackathon" class="mob navlink">Hackathon</a>
+        <a href="#decade" class="mob navlink">Decade</a>
+        <a href="#team" class="mob navlink">Team</a>
+        <a href="#register" class="mob btn-pink px-5 py-2.5 text-xs text-center">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="relative pt-32 sm:pt-40 pb-20 overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Illustration%20Exports/Hero%201%20without%20title.png"
+         alt="" aria-hidden="true"
+         class="birds birds-mask pointer-events-none select-none absolute top-0 right-0 h-full w-[70%] object-cover hidden lg:block" />
+
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-8">
+          <p class="eyebrow flex flex-wrap items-center gap-3">
+            <span class="inline-block w-8 h-px" style="background:var(--muted)"></span>
+            Qiskit Fall Fest 2026 &nbsp;&middot;&nbsp; <span class="font-mono text-ink normal-case tracking-normal text-sm">|QET&#10217;</span> IIT Hyderabad &nbsp;&middot;&nbsp; Oct 9&ndash;11
+          </p>
+
+          <h1 class="mt-8 font-serif font-semibold text-ink leading-[0.95] tracking-tight text-6xl sm:text-8xl xl:text-[8.5rem]">
+            Where curiosity<br />
+            <span class="serif-italic font-medium text-accent">takes flight.</span>
+          </h1>
+
+          <p class="mt-8 max-w-xl text-muted text-base sm:text-lg leading-relaxed">
+            A student-led quantum computing festival by <span class="text-ink font-mono">|QET&#10217;</span> IIT Hyderabad —
+            hands-on Qiskit workshops, industry talks, real networking, and a beginner-friendly hackathon.
+            No prior quantum experience required.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-6">
+            <a href="#register" class="btn-pink px-7 py-4 text-xs font-mono uppercase tracking-widest">Register / RSVP &nbsp;&#8599;</a>
+            <a href="#schedule" class="link-arrow font-mono uppercase tracking-widest text-xs text-ink">View schedule &nbsp;&darr;</a>
+          </div>
+        </div>
+
+        <!-- official badge (static, no rotation) -->
+        <div class="lg:col-span-4 hidden lg:flex justify-center">
+          <img src="materials-resources/00_Deliverables/Illustration%20Exports/badge-pink.svg"
+               alt="Qiskit Fall Fest 2026 badge" class="w-60 h-60 float" />
+        </div>
+      </div>
+
+      <!-- meta row -->
+      <div class="mt-20 grid grid-cols-2 lg:grid-cols-4 border-t border-l rule">
+        <div class="p-6 border-b border-r rule">
+          <p class="font-serif text-2xl text-ink">09 &ndash; 11 Oct</p>
+          <p class="eyebrow mt-1">October 2026 &middot; 3 Days</p>
+        </div>
+        <div class="p-6 border-b border-r rule">
+          <p class="font-serif text-2xl text-ink">IIT Hyderabad</p>
+          <p class="eyebrow mt-1">Hyderabad, India</p>
+        </div>
+        <div class="p-6 border-b border-r rule">
+          <p class="font-serif text-2xl text-ink">Hybrid</p>
+          <p class="eyebrow mt-1">In-person &middot; Online Also</p>
+        </div>
+        <div class="p-6 border-b border-r rule">
+          <p class="font-serif text-2xl text-ink">Open to All</p>
+          <p class="eyebrow mt-1">Free &middot; Registration required</p>
+        </div>
+      </div>
+
+      <!-- collaboration band (enlarged) -->
+      <div class="mt-16 border-t rule pt-10">
+        <span class="eyebrow">In collaboration with</span>
+        <div class="mt-7 flex flex-wrap items-center gap-x-12 gap-y-8">
+          <img src="IBM_Quantum/Raster/RGB/IBM_Quantum_logotype_rev_RGB.png" alt="IBM Quantum" class="only-dark h-14 sm:h-16 object-contain" />
+          <img src="IBM_Quantum/Raster/RGB/IBM_Quantum_logotype_pos_RGB.png" alt="IBM Quantum" class="only-light h-14 sm:h-16 object-contain" />
+          <span class="hidden sm:block h-14 w-px" style="background:var(--border2)"></span>
+          <span class="flex items-center gap-4">
+            <img src="Pictogram/SVG/qiskit_white.svg" alt="Qiskit" class="only-dark h-14 w-14 sm:h-16 sm:w-16" />
+            <img src="Pictogram/SVG/qiskit_purple-60.svg" alt="Qiskit" class="only-light h-14 w-14 sm:h-16 sm:w-16" />
+            <span class="font-serif text-4xl sm:text-5xl text-ink">Qiskit</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="relative border-t rule bg-panel overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Stickers/SVG/cloud2.svg" alt="" aria-hidden="true" class="float absolute right-6 top-20 w-32 opacity-40 hidden lg:block" />
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">01 / The Invitation</p>
+      <div class="mt-10 grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <h2 class="font-serif font-semibold text-ink text-4xl sm:text-6xl leading-[1.02] tracking-tight">
+          Where wild birds meet the
+          <span class="serif-italic text-accent">quantum</span> clouds.
+        </h2>
+        <div>
+          <p class="text-ink text-lg leading-relaxed">
+            Qiskit Fall Fest is a worldwide celebration of quantum computing, run by students, for students.
+            <span class="font-mono text-ink">|QET&#10217;</span> — the Quantum Entanglement Team at IIT Hyderabad — brings the fest home,
+            fusing the official IBM Quantum &amp; Qiskit series with our campus community.
+          </p>
+          <p class="mt-6 text-muted leading-relaxed">
+            Start with the fundamentals, move through expert-led talks, build with Qiskit in the workshops,
+            then turn your ideas into a challenge-ready project. No gatekeeping — beginners, students,
+            researchers and the merely curious are all welcome. Just a shared sky.
+          </p>
+          <a href="#schedule" class="link-arrow inline-block mt-8 font-mono uppercase tracking-widest text-xs text-ink">See the full program &rarr;</a>
+        </div>
+      </div>
+
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 border-t border-l rule bg-bg">
+        <div class="p-8 border-b border-r rule"><p class="font-serif text-5xl text-ink">03</p><p class="eyebrow mt-3">Days in flight</p></div>
+        <div class="p-8 border-b border-r rule"><p class="font-serif text-5xl text-ink">12+</p><p class="eyebrow mt-3">Sessions</p></div>
+        <div class="p-8 border-b border-r rule"><p class="font-serif text-5xl text-ink">08+</p><p class="eyebrow mt-3">Speakers</p></div>
+        <div class="p-8 border-b border-r rule"><p class="font-serif text-5xl text-accent">3h</p><p class="eyebrow mt-3">Hackathon</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule" class="relative border-t rule overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Stickers/PNG/Sticker%2003.png" alt="" aria-hidden="true" class="float absolute -right-6 top-24 w-28 opacity-30 hidden lg:block" />
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">02 / The Program</p>
+      <div class="mt-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <h2 class="font-serif font-semibold text-ink text-4xl sm:text-6xl tracking-tight">Three days of quantum.</h2>
+        <p class="text-muted max-w-sm">Every session runs <span class="text-ink">Hybrid — Online Also</span>. Choose your track.</p>
+      </div>
+
+      <div class="mt-12 flex flex-wrap gap-8 border-b rule">
+        <button data-tab="fri" class="tab-btn pb-4 text-left font-mono uppercase tracking-widest text-xs text-muted">
+          <span class="block text-ink">Friday</span>Inauguration
+        </button>
+        <button data-tab="sat" class="tab-btn pb-4 text-left font-mono uppercase tracking-widest text-xs text-muted">
+          <span class="block text-ink">Saturday</span>Workshops
+        </button>
+        <button data-tab="sun" class="tab-btn pb-4 text-left font-mono uppercase tracking-widest text-xs text-muted">
+          <span class="block text-ink">Sunday</span>Hackathon
+        </button>
+      </div>
+
+      <div id="panel-fri" class="tab-content mt-2">
+        <div class="flex items-center gap-4 py-6"><h3 class="font-serif text-2xl text-ink">Inauguration</h3><span class="eyebrow">Online Also</span></div>
+        <ul data-timeline>
+          <li data-item><span data-time>5:30 PM</span><span data-title>Inauguration</span><span data-tag>Ceremony</span></li>
+          <li data-item><span data-time>6:00 PM</span><span data-title>Sangkha</span><span data-tag>Talk</span></li>
+          <li data-item><span data-time>7:00 PM</span><span data-title>Alok Kumar Pan</span><span data-tag>Keynote</span></li>
+        </ul>
+        <div data-day-speakers="fri"></div>
+      </div>
+
+      <div id="panel-sat" class="tab-content mt-2 hidden">
+        <div class="flex items-center gap-4 py-6"><h3 class="font-serif text-2xl text-ink">Networking &amp; Workshops</h3><span class="eyebrow">Online Also</span></div>
+        <ul data-timeline>
+          <li data-item><span data-time>10:00 AM</span><span data-title>IBM Qiskit 101</span><span data-tag>Workshop</span></li>
+          <li data-item><span data-time>11:00 AM</span><span data-title>Accelquant</span><span data-tag>Talk</span></li>
+          <li data-item><span data-time>12:00 PM</span><span data-title>Animesh Taqbit</span><span data-tag>Talk</span></li>
+        </ul>
+        <div class="flex items-center gap-4 py-5 text-muted"><span class="flex-1 h-px" style="background:var(--border)"></span><span class="eyebrow">Lunch Break</span><span class="flex-1 h-px" style="background:var(--border)"></span></div>
+        <p class="eyebrow text-accent mb-2">Workshop &middot; Beginners Track</p>
+        <ul data-timeline>
+          <li data-item><span data-time>2:00 PM</span><span data-title>Bijita</span><span data-tag>Beginners</span></li>
+          <li data-item><span data-time>3:00 PM</span><span data-title>Archak</span><span data-tag>Beginners</span></li>
+          <li data-item><span data-time>4:00 PM</span><span data-title>Venkat</span><span data-tag>Beginners</span></li>
+        </ul>
+        <div data-day-speakers="sat"></div>
+      </div>
+
+      <div id="panel-sun" class="tab-content mt-2 hidden">
+        <div class="flex items-center gap-4 py-6"><h3 class="font-serif text-2xl text-ink">Deep Dive &amp; Hackathon</h3><span class="eyebrow">Online Also</span></div>
+        <p class="eyebrow text-grape mb-2">Morning Deep Dive &middot; <span class="text-muted">can split into 45 mins</span></p>
+        <ul data-timeline>
+          <li data-item><span data-time>10:00 AM</span><span data-title>Archak</span><span data-tag>Deep Dive</span></li>
+          <li data-item><span data-time>11:00 AM</span><span data-title>MVP</span><span data-tag>Deep Dive</span></li>
+          <li data-item><span data-time>12:00 PM</span><span data-title>To Be Decided</span><span data-tag>TBD</span></li>
+        </ul>
+        <p class="eyebrow text-grape mt-6 mb-2">Afternoon Hands-on Track</p>
+        <ul data-timeline>
+          <li data-item><span data-time>2:00 PM+</span><span data-title>Workshop</span><span data-tag>Workshop</span></li>
+          <li data-item data-feature><span data-time>2&ndash;5 PM</span><span data-title>|QET&#10217; Hackathon</span><span data-tag>Hackathon</span></li>
+          <li data-item><span data-time>5&ndash;6 PM</span><span data-title>Closing Ceremony</span><span data-tag>Ceremony</span></li>
+        </ul>
+        <div data-day-speakers="sun"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKERS -->
+  <section id="speakers" class="border-t rule bg-panel">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">03 / The Speakers</p>
+      <div class="mt-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <h2 class="font-serif font-semibold text-ink text-4xl sm:text-6xl tracking-tight">
+          Speakers &amp; <span class="serif-italic text-accent">industry</span>.
+        </h2>
+        <p class="text-muted max-w-sm">Academics, founders and Qiskit advocates. Talk titles are placeholders — final abstracts coming soon.</p>
+      </div>
+      <div id="speakerGrid" class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l rule bg-bg"></div>
+    </div>
+  </section>
+
+  <!-- HACKATHON -->
+  <section id="hackathon" class="border-t rule">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">04 / The Hackathon</p>
+      <div class="mt-10 grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <div>
+          <p class="eyebrow text-accent">Sunday &middot; 2:00 &ndash; 5:00 PM</p>
+          <h2 class="mt-6 font-serif font-semibold text-ink text-5xl sm:text-7xl leading-[0.98] tracking-tight">
+            The <span class="serif-italic text-accent">|QET&#10217;</span> Hackathon.
+          </h2>
+          <p class="mt-8 text-ink text-lg leading-relaxed max-w-lg">
+            A focused three-hour quantum sprint — beginner-friendly, team-based, and built on Qiskit.
+            Bring an idea, form a team on the spot, ship a working prototype before the closing ceremony.
+          </p>
+          <ul class="mt-8 space-y-4 text-muted">
+            <li class="flex gap-4 border-t rule pt-4"><span class="font-mono text-accent text-sm">01</span> No quantum background required — mentors on-site and online.</li>
+            <li class="flex gap-4 border-t rule pt-4"><span class="font-mono text-accent text-sm">02</span> Hands-on tracks running alongside from 2:00 PM.</li>
+            <li class="flex gap-4 border-t rule pt-4"><span class="font-mono text-accent text-sm">03</span> Winners spotlighted at the 5:00 PM Closing Ceremony.</li>
+          </ul>
+          <a href="#register" class="btn-solid inline-flex mt-10 px-7 py-4 text-xs font-mono uppercase tracking-widest">Join the Hackathon &nbsp;&#8599;</a>
+        </div>
+
+        <div class="relative grid grid-cols-2 border-t border-l rule bg-panel">
+          <img src="materials-resources/00_Deliverables/Stickers/PNG/Sticker%2005.png" alt="" aria-hidden="true"
+               class="float absolute -top-10 -right-6 w-24 h-24 hidden lg:block" />
+          <div class="p-10 border-b border-r rule"><p class="font-serif text-6xl text-ink">3h</p><p class="eyebrow mt-3">Sprint length</p></div>
+          <div class="p-10 border-b border-r rule"><p class="font-serif text-6xl text-ink">All</p><p class="eyebrow mt-3">Skill levels</p></div>
+          <div class="p-10 border-b border-r rule"><p class="font-serif text-6xl text-accent">Qiskit</p><p class="eyebrow mt-3">Tech stack</p></div>
+          <div class="p-10 border-b border-r rule"><p class="font-serif text-6xl text-ink">Teams</p><p class="eyebrow mt-3">Formed on-site</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A DECADE ON CLOUD -->
+  <section id="decade" class="relative border-t rule overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Stickers/SVG/cloud1.svg" alt="" aria-hidden="true" class="float absolute right-8 top-24 w-32 opacity-40 hidden lg:block" />
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">05 / The Long View</p>
+      <h2 class="mt-8 font-serif font-semibold text-ink text-6xl sm:text-8xl leading-[0.92] tracking-tight">
+        A decade<br /><span class="serif-italic text-accent">on the cloud.</span>
+      </h2>
+      <p class="mt-8 max-w-xl text-muted text-lg leading-relaxed">
+        Ten years of Qiskit Fall Fest — a decade of making quantum computing open, hands-on and
+        community-run. Here's the flight path that brings it to <span class="font-mono text-ink">|QET&#10217;</span> IIT Hyderabad.
+      </p>
+
+      <div id="decadeTimeline" class="mt-20"></div>
+
+      <!-- closing -->
+      <div class="mt-16 flex flex-col sm:flex-row items-start gap-8 border-t rule pt-12">
+        <img src="materials-resources/00_Deliverables/Stickers/PNG/Sticker_cloud.png" alt="" aria-hidden="true" class="w-28 h-28 shrink-0 float" />
+        <p class="max-w-2xl font-serif text-2xl sm:text-3xl text-ink leading-snug">
+          From local experiments to a world of accessible cloud quantum learning. Qiskit gave the community a
+          common language — now <span class="serif-italic text-accent">|QET&#10217;</span> adds its own accent from IIT Hyderabad.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="relative border-t rule bg-panel overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Stickers/PNG/Sticker%2007.png" alt="" aria-hidden="true" class="float absolute right-8 top-16 w-24 opacity-30 hidden lg:block" />
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-24">
+      <p class="secno">06 / The Team</p>
+      <div class="mt-10 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <h2 class="font-serif font-semibold text-ink text-4xl sm:text-6xl tracking-tight">
+          Organized by <span class="serif-italic text-accent">|QET&#10217;</span>.
+        </h2>
+        <p class="text-muted max-w-sm"><span class="font-mono text-ink">|QET&#10217;</span> — the Quantum Entanglement Team, IIT Hyderabad. Names below are placeholders.</p>
+      </div>
+      <div id="teamGrid" class="mt-14 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border-t border-l rule bg-bg"></div>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="register" class="relative border-t rule bg-bg overflow-hidden">
+    <img src="materials-resources/00_Deliverables/Stickers/SVG/cloud1.svg" alt="" aria-hidden="true" class="float absolute left-8 top-16 w-28 opacity-60 hidden md:block" />
+    <img src="materials-resources/00_Deliverables/Stickers/SVG/cloud2.svg" alt="" aria-hidden="true" class="float absolute right-10 bottom-16 w-32 opacity-60 hidden md:block" style="animation-delay:1.5s" />
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 py-28 text-center">
+      <p class="secno">Register</p>
+      <h2 class="mt-8 font-serif font-semibold text-ink text-5xl sm:text-8xl tracking-tight leading-[0.95]">
+        Ready to <span class="serif-italic text-accent">take flight?</span>
+      </h2>
+      <p class="mt-8 text-muted text-lg max-w-xl mx-auto">
+        <span class="text-ink">9 &ndash; 11 October 2026</span> &middot; IIT Hyderabad, Hyderabad.
+        Qiskit Fall Fest 2026 x <span class="font-mono text-ink">|QET&#10217;</span> — free, hybrid, and open to all.
+      </p>
+      <div class="mt-12 flex flex-wrap justify-center gap-6">
+        <a href="#" class="btn-pink px-9 py-4 text-xs font-mono uppercase tracking-widest">Register / RSVP &nbsp;&#8599;</a>
+        <a href="#" class="btn-ghost px-9 py-4 text-xs font-mono uppercase tracking-widest">Join our Discord &nbsp;&#8599;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t rule bg-panel">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16 grid gap-12 md:grid-cols-4">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-4 flex-wrap">
+          <img src="QET_Dark.png" alt="|QET&#10217; IIT Hyderabad" class="only-dark h-12" />
+          <img src="QET_Light.png" alt="|QET&#10217; IIT Hyderabad" class="only-light h-12" />
+          <span class="eyebrow">&times; Qiskit Fall Fest 2026</span>
+        </div>
+        <p class="mt-5 text-muted max-w-md leading-relaxed">
+          A student-led quantum computing festival &amp; hackathon by the Quantum Entanglement Team, IIT Hyderabad,
+          run in collaboration with the global Qiskit Fall Fest series.
+        </p>
+        <img src="IBM_Quantum/Raster/RGB/IBM_Quantum_logotype_rev_RGB.png" alt="IBM Quantum" class="only-dark mt-8 h-9 object-contain" />
+        <img src="IBM_Quantum/Raster/RGB/IBM_Quantum_logotype_pos_RGB.png" alt="IBM Quantum" class="only-light mt-8 h-9 object-contain" />
+      </div>
+      <div>
+        <p class="eyebrow mb-5">Event</p>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#about" class="navlink">About</a></li>
+          <li><a href="#schedule" class="navlink">Program</a></li>
+          <li><a href="#speakers" class="navlink">Speakers</a></li>
+          <li><a href="#hackathon" class="navlink">Hackathon</a></li>
+          <li><a href="#decade" class="navlink">A Decade on Cloud</a></li>
+          <li><a href="#team" class="navlink">Team</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow mb-5">Community</p>
+        <ul class="space-y-3 text-sm text-muted">
+          <li><a href="#" class="navlink">Discord</a></li>
+          <li><a href="#" class="navlink">GitHub Repository</a></li>
+          <li><a href="https://qiskit.org" class="navlink">Qiskit.org</a></li>
+          <li><a href="#register" class="navlink">Register / RSVP</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t rule">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 flex flex-col sm:flex-row justify-between gap-3 text-[11px] font-mono uppercase tracking-widest text-muted">
+        <p>&copy; 2026 |QET&#10217; IIT Hyderabad &middot; 9&ndash;11 Oct 2026 &middot; Built by students, for students</p>
+        <p>Qiskit &amp; IBM Quantum marks belong to their owners &middot; Community-run event</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
+    });
+
+    // mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mob').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    // eased smooth scroll (ease-in-out) for in-page anchors
+    document.documentElement.style.scrollBehavior = 'auto';
+    const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    let scrollRAF;
+    function smoothScrollTo(targetY, duration = 800) {
+      cancelAnimationFrame(scrollRAF);
+      const startY = window.scrollY;
+      const dist = targetY - startY;
+      if (Math.abs(dist) < 2) return;
+      let startT;
+      const step = ts => {
+        if (startT === undefined) startT = ts;
+        const p = Math.min((ts - startT) / duration, 1);
+        window.scrollTo(0, startY + dist * easeInOutCubic(p));
+        if (p < 1) scrollRAF = requestAnimationFrame(step);
+      };
+      scrollRAF = requestAnimationFrame(step);
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length < 2) return;                 // skip bare "#"
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        mobileMenu.classList.add('hidden');
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;  // fixed navbar offset
+        smoothScrollTo(y, 850);
+        history.replaceState(null, '', id);
+      });
+    });
+
+    // timeline rows
+    document.querySelectorAll('[data-item]').forEach(li => {
+      li.classList.add('rowline','grid','grid-cols-[5rem_1fr_auto]','sm:grid-cols-[7rem_1fr_auto]','items-baseline','gap-4','sm:gap-8','border-t','rule','py-5','px-1','transition-colors');
+      const feature = li.hasAttribute('data-feature');
+      li.querySelector('[data-time]').classList.add('font-mono','text-sm','text-muted');
+      const title = li.querySelector('[data-title]');
+      title.classList.add('rw-title','font-serif','text-xl','sm:text-2xl','transition-colors', feature ? 'text-accent' : 'text-ink');
+      const tag = li.querySelector('[data-tag]');
+      tag.classList.add('font-mono','uppercase','tracking-widest','text-[11px]', feature ? 'text-accent' : 'text-muted');
+      if (feature) li.style.background = 'color-mix(in srgb, #ff4f9e 8%, transparent)';
+    });
+
+    // tabs
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = { fri:'panel-fri', sat:'panel-sat', sun:'panel-sun' };
+    function activate(tab){
+      tabs.forEach(b => {
+        const on = b.dataset.tab === tab;
+        b.style.borderBottom = on ? '2px solid #ff4f9e' : '2px solid transparent';
+        b.style.marginBottom = '-1px';
+        b.querySelector('span').style.color = on ? '#ff4f9e' : 'var(--ink)';
+      });
+      Object.entries(panels).forEach(([k,id]) => {
+        const el = document.getElementById(id);
+        el.classList.toggle('hidden', k !== tab);
+        if (k===tab){ el.classList.remove('tab-panel'); void el.offsetWidth; el.classList.add('tab-panel'); }
+      });
+    }
+    tabs.forEach(b => b.addEventListener('click', () => activate(b.dataset.tab)));
+    activate('fri');
+
+    // SPEAKERS — photo + name + field + about + talk + website, mapped to days
+    const img = n => `https://i.pravatar.cc/500?img=${n}`;
+    const speakers = [
+      { name:'Alok Kumar Pan', field:'Quantum Foundations · Faculty', talk:'Foundations of Quantum Mechanics & Nonlocality', about:'Researcher in quantum foundations and nonlocality, probing the limits of quantum theory.', web:'#', n:12, days:['fri'] },
+      { name:'Sangkha',        field:'Quantum Computing',             talk:'Talk title to be announced', about:'Quantum computing enthusiast joining the inauguration evening.', web:'#', n:5, days:['fri'] },
+      { name:'Accelquant',     field:'Industry · Quantum Startup',    talk:'Accelerating Quantum Workflows in Production', about:'Industry voice building tooling to bring quantum workflows into production.', web:'#', n:15, days:['sat'] },
+      { name:'Animesh Taqbit', field:'Quantum Software',              talk:'Talk title to be announced', about:'Works on quantum software and developer tooling across the Qiskit stack.', web:'#', n:33, days:['sat'] },
+      { name:'Bijita',         field:'Qiskit · Beginners Track',      talk:'Your First Quantum Circuit with Qiskit', about:'Leads the beginners track — from zero to your first working quantum circuit.', web:'#', n:45, days:['sat'] },
+      { name:'Archak',         field:'Quantum Algorithms',            talk:'Deep Dive: Variational Quantum Algorithms', about:'Focuses on variational quantum algorithms and hands-on Qiskit deep dives.', web:'#', n:8, days:['sat','sun'] },
+      { name:'Venkat',         field:'Quantum Hardware',              talk:'Talk title to be announced', about:'Quantum hardware track — how qubits go from theory to real devices.', web:'#', n:52, days:['sat'] },
+      { name:'MVP',            field:'Quantum Applications',          talk:'Deep Dive: Real-World Quantum Use-Cases', about:'Explores real-world quantum applications in the Sunday deep dive.', web:'#', n:60, days:['sun'] },
+      { name:'To Be Decided',  field:'Announced soon',                talk:'Slot open — abstract coming soon', about:'Speaker to be announced. Watch this space.', web:'#', n:68, days:['sun'] },
+    ];
+
+    // full directory grid
+    document.getElementById('speakerGrid').innerHTML = speakers.map((sp,i) => `
+      <div class="group flex flex-col border-b border-r rule transition-colors hover:bg-panel">
+        <div class="relative overflow-hidden">
+          <img src="${img(sp.n)}" alt="${sp.name}" class="portrait w-full aspect-[4/5] object-cover transition" loading="lazy" />
+          <span class="absolute top-3 right-3 font-mono text-[11px] text-white bg-black/45 px-2 py-1">${String(i+1).padStart(2,'0')}</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col">
+          <h3 class="font-serif text-2xl text-ink group-hover:text-accent transition-colors">${sp.name}</h3>
+          <p class="mt-1 font-mono uppercase tracking-widest text-[11px] text-muted">${sp.field}</p>
+          <div class="mt-5 pt-4 border-t rule">
+            <p class="eyebrow mb-1 text-accent">Talk</p>
+            <p class="font-serif text-lg text-ink leading-snug">${sp.talk}</p>
+          </div>
+          <a href="${sp.web}" target="_blank" rel="noopener" class="mt-4 inline-block font-mono uppercase tracking-widest text-[11px] text-muted hover:text-accent transition-colors">Website &#8599;</a>
+        </div>
+      </div>
+    `).join('');
+
+    // per-day speaker spotlight inside each schedule tab
+    const spotlight = s => `
+      <a href="${s.web}" target="_blank" rel="noopener" class="group flex gap-4 border rule bg-bg p-4 hover:border-accent transition-colors">
+        <img src="${img(s.n)}" alt="${s.name}" class="portrait w-20 h-20 sm:w-24 sm:h-24 object-cover shrink-0" loading="lazy" />
+        <div class="min-w-0">
+          <h4 class="font-serif text-lg text-ink group-hover:text-accent transition-colors">${s.name}</h4>
+          <p class="mt-0.5 font-mono uppercase tracking-widest text-[10px] text-muted">${s.field}</p>
+          <p class="mt-2 text-sm text-muted leading-snug">${s.about}</p>
+          <span class="mt-2 inline-block font-mono uppercase tracking-widest text-[10px] text-accent">Website &#8599;</span>
+        </div>
+      </a>`;
+    document.querySelectorAll('[data-day-speakers]').forEach(box => {
+      const day = box.getAttribute('data-day-speakers');
+      const list = speakers.filter(s => s.days.includes(day));
+      if (!list.length) return;
+      box.className = 'mt-14 border-t rule pt-10';
+      box.innerHTML = `<p class="eyebrow mb-6">Speaking this day &middot; ${list.length} ${list.length===1?'voice':'voices'}</p>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">${list.map(spotlight).join('')}</div>`;
+    });
+
+    // TEAM — organizers (placeholder names)
+    const team = [
+      { name:'Aarav Sharma',   role:'Faculty Advisor', n:11 },
+      { name:'Isha Verma',     role:'Club Lead',       n:20 },
+      { name:'Rohan Nair',     role:'Hackathon Lead',  n:13 },
+      { name:'Meera Iyer',     role:'Workshops Lead',  n:24 },
+      { name:'Kabir Rao',      role:'Speakers & Outreach', n:14 },
+      { name:'Ananya Das',     role:'Design Lead',     n:41 },
+      { name:'Vivaan Menon',   role:'Web & Tech',      n:53 },
+      { name:'Diya Kapoor',    role:'Operations',      n:29 },
+    ];
+    document.getElementById('teamGrid').innerHTML = team.map(m => `
+      <div class="group border-b border-r rule transition-colors hover:bg-panel">
+        <div class="overflow-hidden">
+          <img src="${img(m.n)}" alt="${m.name}" class="portrait w-full aspect-square object-cover transition" loading="lazy" />
+        </div>
+        <div class="p-5">
+          <h3 class="font-serif text-xl text-ink group-hover:text-accent transition-colors">${m.name}</h3>
+          <p class="mt-1 font-mono uppercase tracking-widest text-[11px] text-muted">${m.role}</p>
+        </div>
+      </div>
+    `).join('');
+
+    // A DECADE ON CLOUD — timeline
+    const decade = [
+      { y:'2016', t:'The cloud opens a new door' },
+      { y:'2018', t:'Quantum learning finds a wider audience' },
+      { y:'2020', t:'Communities experiment together' },
+      { y:'2022', t:'Hybrid ideas move into practice' },
+      { y:'2024', t:'Qiskit becomes a shared language' },
+      { y:'2026', t:'|QET⟩ brings the fest to IIT Hyderabad', now:true },
+    ];
+    const nowBadge = '<span class="mt-3 inline-block font-mono uppercase tracking-widest text-[10px] text-accent">You are here</span>';
+    // desktop: horizontal
+    const desktop = `
+      <div class="hidden lg:grid grid-cols-6">
+        ${decade.map(d => `
+          <div class="tl-node group pr-6">
+            <p class="font-serif text-4xl ${d.now?'text-accent':'text-ink'} leading-none">${d.y}</p>
+            <div class="relative mt-8 border-t rule">
+              <span class="tl-dot ${d.now?'now':''}" style="top:${d.now?'-8px':'-6px'};left:0;"></span>
+            </div>
+            <p class="tl-cap mt-8 text-sm text-muted leading-snug pr-2">${d.t}</p>
+            ${d.now?nowBadge:''}
+          </div>`).join('')}
+      </div>`;
+    // mobile: vertical rail
+    const mobile = `
+      <div class="lg:hidden relative pl-8">
+        <div class="absolute left-[7px] top-3 bottom-3 w-px" style="background:linear-gradient(180deg,#ff4f9e,color-mix(in srgb,#ff4f9e 10%,transparent))"></div>
+        ${decade.map(d => `
+          <div class="tl-node group relative pb-10 last:pb-0">
+            <span class="tl-dot ${d.now?'now':''}" style="top:6px;left:-32px;"></span>
+            <p class="font-serif text-3xl ${d.now?'text-accent':'text-ink'} leading-none">${d.y}</p>
+            <p class="tl-cap mt-3 text-sm text-muted leading-snug">${d.t}</p>
+            ${d.now?nowBadge:''}
+          </div>`).join('')}
+      </div>`;
+    document.getElementById('decadeTimeline').innerHTML = desktop + mobile;
+  </script>
+</body>
+</html>
